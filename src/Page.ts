@@ -8,7 +8,7 @@ export class Page {
   private _items: Item[]
   public stilize: Required<PageOptions>['stilize']
 
-  constructor(items: (Item | ItemConstruction)[], options?: PageOptions) {
+  constructor (items: (Item | ItemConstruction)[], options?: PageOptions) {
     this._items = items.map((item) => {
       if (item instanceof Item) return item
       return new Item({
@@ -19,7 +19,7 @@ export class Page {
       })
     })
 
-    const defaultStilize = (data: StilizeData): string | MessageEmbed => {
+    const defaultStilize = async (data: StilizeData): Promise<string | MessageEmbed> => {
       const embed = new MessageEmbed()
         .setColor('RANDOM')
         .setDescription(items.map((item) => `${item.name} | \`${item.instanceOf}\` **=>** ${item.value}`))
@@ -31,15 +31,15 @@ export class Page {
     this.stilize = options?.stilize ?? defaultStilize
   }
 
-  get isFulfilled(): boolean {
+  get isFulfilled (): boolean {
     return this._items.every((item) => item.isFulfilled)
   }
 
-  get items(): Item[] {
+  get items (): Item[] {
     return this._items
   }
 
-  toJSON(): Record<string, any> {
+  toJSON (): Record<string, any> {
     return pageToJson(this)
   }
 }

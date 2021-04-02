@@ -87,8 +87,8 @@ export class DiscordUI extends EventEmitter {
     this.emit('start', createdMessage, collector)
   }
 
-  private update (message: Message) {
-    message.edit(this._actualPage.stilize(this.stilizeData()))
+  private async update (message: Message) {
+    message.edit(await this._actualPage.stilize(this.stilizeData()))
   }
 
   private stilizeData (): StilizeData {

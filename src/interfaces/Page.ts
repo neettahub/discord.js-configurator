@@ -34,5 +34,5 @@ export interface PageOptions {
   /** If it is a list, how it will be splitted `default=,` */
   defaultSplitBy?: string;
   /** How the message will be created */
-  stilize?: (data: StilizeData) => any
+  stilize?: (data: StilizeData) => Promise<any>
 }
