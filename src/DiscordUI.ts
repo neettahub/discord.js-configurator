@@ -116,7 +116,8 @@ export class DiscordUI extends EventEmitter {
     if (this._pages.length > 1) {
       const data = (emoji: any) => ({ message, user: this._user, emoji })
 
-      const [next, last] = [
+      // eslint-disable-next-line no-unused-vars
+      const [_next, _last] = [
         new Button(data('➡️'), { removeFrom: 'any', act: () => this.nextPage(message) }),
         new Button(data('⬅️'), { removeFrom: 'any', act: () => this.lastPage(message) })
       ]
