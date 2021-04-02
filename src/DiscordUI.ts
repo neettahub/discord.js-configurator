@@ -34,7 +34,7 @@ export class DiscordUI extends EventEmitter {
     if (!everyPageFulfilled && wasFulfilled) this.emit('UINotFulfilledAnymore')
   }
 
-  private setupMessageHandler (messageHandler?: Handler) {
+  private async setupMessageHandler (messageHandler?: Handler) {
     if (messageHandler) {
       this._filter = messageHandler.filter
       this._getItemNameAndValue = messageHandler.itemAndValue
@@ -48,11 +48,10 @@ export class DiscordUI extends EventEmitter {
         return { name, value }
       }
     }
-    this._channel.send(this._actualPage.stilize(this.stilizeData()))
-      .then((message) => {
-        this.startMessageCollector(message)
-        this.startButtons(message)
-      })
+    const message = await this._channel.send(await this._actualPage.stilize(this.stilizeData()))
+
+    this.startMessageCollector(message)
+    this.startButtons(message)
   }
 
   startMessageCollector (createdMessage: Message) {
