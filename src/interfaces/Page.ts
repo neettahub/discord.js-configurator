@@ -1,5 +1,3 @@
-import { MessageEmbed } from 'discord.js'
-
 export interface StilizeData {
   all: {
     fulfilled: {
@@ -36,5 +34,5 @@ export interface PageOptions {
   /** If it is a list, how it will be splitted `default=,` */
   defaultSplitBy?: string;
   /** How the message will be created */
-  stilize?: (data: StilizeData) => string | MessageEmbed;
+  stilize?: (data: StilizeData) => any
 }
