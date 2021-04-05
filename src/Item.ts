@@ -22,11 +22,11 @@ export class Item {
     this._splitBy = data.splitBy ?? ','
     this._value = data.value
 
-    if (data.fulfilled) this.fulfilled = data.fulfilled
-
     this.required
       ? this.fulfilled = false
       : this.fulfilled = true
+
+    if (data.fulfilled) this.fulfilled = data.fulfilled
   }
 
   get isRequired (): boolean {

@@ -27,5 +27,5 @@ export interface ItemConstruction {
   /** If is a list, how it will be splitted `default=,` */
   splitBy?: string
   /** Whether if it should start as fulfilled or not */
-  fulfilled: boolean
+  fulfilled?: boolean
 }
