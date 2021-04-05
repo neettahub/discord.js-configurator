@@ -12,7 +12,7 @@ export class Item {
   public readonly isList: Required<ItemConstruction>['isList']
   public readonly setter: Required<ItemConstruction>['setter']
 
-  constructor(data: ItemConstruction) {
+  constructor (data: ItemConstruction) {
     this.required = data.required ?? true
     this.isList = data.isList ?? false
     this.key = data.key
@@ -21,6 +21,8 @@ export class Item {
     this.instanceOf = data.instanceOf
     this._splitBy = data.splitBy ?? ','
     this._value = data.value
+
+    if (data.fulfilled) this.fulfilled = data.fulfilled
 
     this.required
       ? this.fulfilled = false
@@ -35,11 +37,11 @@ export class Item {
     return this.fulfilled
   }
 
-  get value(): Item['_value'] {
+  get value (): Item['_value'] {
     return this._value
   }
 
-  public setValue(newValue: string): boolean {
+  public setValue (newValue: string): boolean {
     const value = String(newValue).trim()
 
     if (this.isList) {
@@ -82,7 +84,7 @@ export class Item {
     return acceptable
   }
 
-  private static defaultSetter(instance: Instances): (value: string) => boolean {
+  private static defaultSetter (instance: Instances): (value: string) => boolean {
     switch (instance) {
       case 'text': return (value) => /.+/.test(value)
       case 'number': return (value) => /^\d+$/.test(value)
