@@ -19,7 +19,7 @@ export class Page {
       })
     })
 
-    const defaultStilize = async (data: StilizeData): Promise<string | MessageEmbed> => {
+    const defaultStilize = async (items: Item[], data: StilizeData): Promise<string | MessageEmbed> => {
       const embed = new MessageEmbed()
         .setColor('RANDOM')
         .setDescription(items.map((item) => `${item.name} | \`${item.instanceOf}\` **=>** ${item.value}`))

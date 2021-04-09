@@ -48,7 +48,7 @@ export class DiscordUI extends EventEmitter {
         return { name, value }
       }
     }
-    const message = await this._channel.send(await this._actualPage.stilize(this.stilizeData()))
+    const message = await this._channel.send(await this._actualPage.stilize(this._actualPage.items, this.stilizeData()))
 
     this.startMessageCollector(message)
     this.startButtons(message)
@@ -87,7 +87,7 @@ export class DiscordUI extends EventEmitter {
   }
 
   private async update (message: Message) {
-    message.edit(await this._actualPage.stilize(this.stilizeData()))
+    message.edit(await this._actualPage.stilize(this._actualPage.items, this.stilizeData()))
   }
 
   private stilizeData (): StilizeData {
